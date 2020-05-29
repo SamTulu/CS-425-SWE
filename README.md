@@ -1,2 +1,2 @@
-# cs425-swe-202006
-Demo github repo for cs425-swe-202006
+# CS 425-SWE-2020
+Demo github repo for SWE assignments
