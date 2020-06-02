@@ -1,9 +1,7 @@
 package edu.mum.cs.cs425.studentmgmt.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +26,7 @@ public class Classroom {
 	private String roomNumber;
 
 	@OneToMany(mappedBy = "classroom")
-	private List<Student> students = new ArrayList<>();
+	private List<Student> students;
 
 	public Classroom() {
 	}
@@ -36,6 +34,14 @@ public class Classroom {
 	public Classroom(String buildingName, String roomNumber) {
 		this.buildingName = buildingName;
 		this.roomNumber = roomNumber;
+	}
+	
+
+	public Classroom(String buildingName, String roomNumber, List<Student> students) {
+		super();
+		this.buildingName = buildingName;
+		this.roomNumber = roomNumber;
+		this.students = students;
 	}
 
 	public Classroom(int classroomId, String buildingName, String roomNumber, List<Student> students) {
@@ -84,8 +90,8 @@ public class Classroom {
 
 	@Override
 	public String toString() {
-		return String.format("Classroom [classroomId=%s, buildingName=%s, roomNumber=%s, students=%s]", classroomId,
-				buildingName, roomNumber, students);
+		return String.format("Classroom [classroomId=%s, buildingName=%s, roomNumber=%s]", classroomId,
+				buildingName, roomNumber);
 	}
 	
 }

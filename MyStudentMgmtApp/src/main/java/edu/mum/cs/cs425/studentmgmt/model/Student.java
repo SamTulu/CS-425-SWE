@@ -28,13 +28,13 @@ public class Student {
 	@Column(name = "student_number", unique = true, nullable = false)
 	private String studentNumber;
 	@NotBlank(message = "First name is required")
-	@Column(name = "first_name", unique = true, nullable = false)
+	@Column(name = "first_name", nullable = false)
 	private String firstname;
-	@Column(name = "middle_name", unique = true, nullable = true)
+	@Column(name = "middle_name", nullable = true)
 	private String middleName;
 
 	@NotBlank(message = "Last  name is required")
-	@Column(name = "last_name", unique = true, nullable = false)
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
 	private Float cgpa;
@@ -43,9 +43,8 @@ public class Student {
 	@DateTimeFormat(pattern = "yyyy -mm- dd")
 	private LocalDate admissionDate;
 
-	@OneToOne
-	@JoinColumn(name = "transcript_id", nullable = false, unique = true)
-//	    @OneToOne(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(cascade =CascadeType.PERSIST)
+	@JoinColumn(name = "transcript_id", nullable = false)
 	private Transcript transcript;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -110,17 +109,16 @@ public class Student {
 		this.admissionDate = admissionDate;
 		this.transcript = transcript;
 	}
-	
 
 	public Student(String studentNumber, @NotBlank(message = "First name is required") String firstname,
-			String middleName, @NotBlank(message = "Last  name is required") String lastName, Float  cgpa,
+			String middleName, @NotBlank(message = "Last  name is required") String lastName, Float cgpa,
 			LocalDate admissionDate) {
 		super();
 		this.studentNumber = studentNumber;
 		this.firstname = firstname;
 		this.middleName = middleName;
 		this.lastName = lastName;
-		this.cgpa =  cgpa;
+		this.cgpa = cgpa;
 		this.admissionDate = admissionDate;
 	}
 

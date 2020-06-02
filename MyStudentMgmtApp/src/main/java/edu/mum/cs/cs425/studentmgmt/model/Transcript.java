@@ -21,9 +21,7 @@ public class Transcript {
 	@Column(name = "degree_title")
 	private String degreeTitle;
 
-	@OneToOne(mappedBy = "transcript", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	    @OneToOne
-//	    @JoinColumn(name="student_id", nullable = false, unique = true)
+	@OneToOne(mappedBy = "transcript")
 	private Student student;
 
 	public Transcript() {
@@ -70,8 +68,7 @@ public class Transcript {
 
 	@Override
 	public String toString() {
-		return String.format("Transcript [transcriptId=%s, degreeTitle=%s, student=%s]", transcriptId, degreeTitle,
-				student);
+		return String.format("Transcript [transcriptId=%s, degreeTitle=%s]", transcriptId, degreeTitle);
 	}
 
 }
